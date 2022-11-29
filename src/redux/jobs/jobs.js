@@ -1,36 +1,42 @@
-// API
-const baseUri = 'https://www.reed.co.uk/api/1.0/';
-const proxyServer = 'https://jau-cors-anywhere-reed.herokuapp.com/';
+import baseUri, { proxyServer, apiKey } from '../../utils/api_config';
 
 // Actions
-const SHOW_JOBS = 'capstone3-jobseek-reedApi/jobs/SHOW_JOBS';
+const UPDATE_DATA = 'capstone3-jobseek-reedApi/jobs/UPDATE_DATA';
+const CLEAR_DATA = 'capstone3-jobseek-reedApi/jobs/CLEAR_DATA';
 
 // Actions creator
-export const showJobs = (data) => ({
-	type: SHOW_JOBS,
-	data,
+export const updateData = (data, keywords) => ({
+  type: UPDATE_DATA,
+  data,
+  keywords,
+});
+
+export const clearData = () => ({
+  type: CLEAR_DATA,
 });
 
 export const fetchJobs = (keywords) => (dispatch) => {
-	fetch(`${proxyServer}${baseUri}search?keywords=${keywords}`, {
-		method: 'GET',
-		headers: {
-			'Content-Type': 'application/json; charset=utf-8',
-			Authorization: `Basic ${btoa('cdf3a52c-c542-43fb-b343-972714ae2e4f:')}`,
-		},
-	})
-		.then((response) => response.json())
-		.then((json) => dispatch(showJobs(json)));
+  fetch(`${proxyServer}${baseUri}search?keywords=${keywords}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json; charset=utf-8',
+      Authorization: `Basic ${btoa(`${apiKey}:`)}`,
+    },
+  })
+    .then((response) => response.json())
+    .then((json) => dispatch(updateData(json, keywords)));
 };
 
 // Reducer
 const jobsReducer = (state = {}, action) => {
-	switch (action.type) {
-		case SHOW_JOBS:
-			return action.data;
-		default:
-			return state;
-	}
+  switch (action.type) {
+    case UPDATE_DATA:
+      return { ...action.data, keywords: action.keywords };
+    case CLEAR_DATA:
+      return {};
+    default:
+      return state;
+  }
 };
 
 export default jobsReducer;
