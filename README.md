@@ -21,7 +21,7 @@
 
 ## Video Demo
 
-:fire: https://www.loom.com/share/be2634dc593b4ec9aa094e869949b3a0 :fire:
+(https://www.loom.com/share/be2634dc593b4ec9aa094e869949b3a0)
 
 
 ## Getting Started
