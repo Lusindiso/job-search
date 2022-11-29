@@ -4,7 +4,6 @@
 
 > Developer Job Search is a React web app for searching for a job. This app is built using reed.co.uk job search API, the UK's #1 job site. Feel free to use my web app for browsing for jobs posted on the reed.co.uk website. The design is mobile responsive so you can use it on any device. However, take note that I am using limited hosting and my private proxy server, so bandwidth may be an issue. Please do let me know when you have this issue and I will respond accordingly.
 
-./screenshot.png
 > ![Developer Job Search](./screenshot.png)
 
 ## Built With
